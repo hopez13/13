@@ -16,19 +16,24 @@ jobs:
           sudo apt-get install -y aria2 tar unzip
       - uses: actions/checkout@main
       - name: Download archive file
-        run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
+        run: aria2c -x 16 -s 16 --file-allocation=none -o download.txt
       - name: Decompress archive file
         run: |
-          file=$(cat download.txt)
-          if [[ $file == *.tgz ]]; then
-            tar -xzf $file
-          elif [[ $file == *.zip ]]; then
-            unzip $file
+          if [ -f download.tgz ]; then
+            tar -xzf download.tgz
+          elif [ -f download.zip ]; then
+            unzip download.zip
+          else
+            echo "Error: Downloaded file is not .tgz or .zip"
+            exit 1
           fi
       - name: Delete archive file
         run: |
-          file=$(cat download.txt)
-          rm $file
+          if [ -f download.tgz ]; then
+            rm download.tgz
+          elif [ -f download.zip ]; then
+            rm download.zip
+          fi
       - name: List sizes of decompressed files in MB
         run: |
           find . -type f -exec ls -l {} \; | awk '{printf "%-50s %7.2f MB\n", $9, $5/1024/1024}'
