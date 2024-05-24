@@ -1,0 +1,2 @@
+https://cdnorg.d.miui.com/V14.0.2.0.TLUINXM/rock_in_global_images_V14.0.2.0.TLUINXM_20230707.0000.00_13.0_in_43f9f66168.tgz
+ out=download.tgz
