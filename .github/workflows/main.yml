@@ -15,7 +15,7 @@ jobs:
           sudo apt-get install -y aria2 tar zstd
       - uses: actions/checkout@main
       - name: Download .tgz file
-        run: aria2c -x 16 -s 128 --file-allocation=none -i download.txt
+        run: aria2c -x 16 -s 256 --file-allocation=none -i download.txt
       - name: List structure of downloaded .tgz file
         run: tar -tzf download.tgz
       - name: Decompress .tgz file
@@ -25,7 +25,7 @@ jobs:
           find . -type f -size +100M -exec ls -lh {} \; -delete
       - name: Recompress using zstd at level 22
         run: |
-          tar --use-compress-program="zstd -22" -cf download.tar.zst -- *
+          tar --use-compress-program="zstd --ultra -22" -cf download.tar.zst -- *
       - name: Upload compressed file as artifact
         uses: actions/upload-artifact@main
         with:
