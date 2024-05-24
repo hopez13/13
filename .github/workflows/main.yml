@@ -15,14 +15,17 @@ jobs:
           sudo apt-get install -y aria2 tar zstd
       - uses: actions/checkout@main
       - name: Download .tgz file
-        run: aria2c -x 16 -s 256 --file-allocation=none -i download.txt
-      - name: List structure of downloaded .tgz file
-        run: tar -tzf download.tgz
+        run: aria2c -x 16 -s 4096 --file-allocation=none -i download.txt
+      - name: List structure and sizes of downloaded .tgz file
+        run: tar -tzvf download.tgz
       - name: Decompress .tgz file
         run: tar -xzf download.tgz
-      - name: Delete files over 100MB and list their sizes
+      - name: List sizes of decompressed files
         run: |
-          find . -type f -size +100M -exec ls -lh {} \; -delete
+          find . -type f -exec ls -lh {} \;
+      - name: Delete files over 13MB and list their sizes
+        run: |
+          find . -type f -size +13M -exec ls -lh {} \; -delete
       - name: Recompress using zstd at level 22
         run: |
           tar --use-compress-program="zstd --ultra -22" -cf download.tar.zst -- *
@@ -31,4 +34,3 @@ jobs:
         with:
           name: compressed-file
           path: download.tar.zst
-          
