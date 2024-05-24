@@ -25,7 +25,7 @@ jobs:
           find . -type f -exec ls -l {} \; | awk '{printf "%-50s %7.2f MB\n", $9, $5/1024/1024}'
       - name: Recompress using zstd at level 22
         run: |
-          tar --use-compress-program="zstd -v -T0--ultra -22" -cf download.tar.zst -- *
+          tar --use-compress-program="zstd -v -T0 --ultra -22" -cf download.tar.zst -- *
       - name: Upload compressed file as artifact
         uses: actions/upload-artifact@main
         with:
