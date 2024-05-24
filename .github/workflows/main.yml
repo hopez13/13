@@ -5,6 +5,7 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -12,22 +13,36 @@ jobs:
       - name: Update tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y aria2 tar zstd
+          sudo apt-get install -y aria2 tar unzip
       - uses: actions/checkout@main
-      - name: Download .tgz file
+      - name: Download archive file
         run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
-      - name: Decompress .tgz file
-        run: tar -xzf download.tgz
-      - name: Delete .tgz archive
-        run: rm download.tgz
+      - name: Decompress archive file
+        run: |
+          file=$(cat download.txt)
+          if [[ $file == *.tgz ]]; then
+            tar -xzf $file
+          elif [[ $file == *.zip ]]; then
+            unzip $file
+          fi
+      - name: Delete archive file
+        run: |
+          file=$(cat download.txt)
+          rm $file
       - name: List sizes of decompressed files in MB
         run: |
           find . -type f -exec ls -l {} \; | awk '{printf "%-50s %7.2f MB\n", $9, $5/1024/1024}'
-      - name: Recompress using zstd at level 22
+      - name: Find .bin file and upload as artifact
         run: |
-          tar --use-compress-program="zstd -v -T4 --ultra -22" -cf download.tar.zst -- *
-      - name: Upload compressed file as artifact
+          bin_file=$(find . -type f -name "*.bin")
+          if [[ -n $bin_file ]]; then
+            echo "Found .bin file: $bin_file"
+          else
+            echo "No .bin file found."
+            exit 1
+          fi
         uses: actions/upload-artifact@main
         with:
-          name: compressed-file
-          path: download.tar.zst
+          name: run
+          path: ${{ steps.find_bin.outputs.bin_file }}
+          
