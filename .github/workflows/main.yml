@@ -32,15 +32,19 @@ jobs:
       - name: List sizes of decompressed files in MB
         run: |
           find . -type f -exec ls -l {} \; | awk '{printf "%-50s %7.2f MB\n", $9, $5/1024/1024}'
-      - name: Find .bin file and upload as artifact
+      - name: Find .bin file
+        id: find_bin
         run: |
-          bin_file=$(find . -type f -name "*.bin")
+          bin_file=$(find . -type f -name "*.bin" | head -n 1)
           if [[ -n $bin_file ]]; then
+            echo "::set-output name=bin_file::$bin_file"
             echo "Found .bin file: $bin_file"
           else
             echo "No .bin file found."
             exit 1
           fi
+      - name: Upload .bin file as artifact
+        if: success()
         uses: actions/upload-artifact@main
         with:
           name: run
