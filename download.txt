@@ -1,2 +1,2 @@
-https://cdnorg.d.miui.com/V14.0.2.0.TLUINXM/rock_in_global_images_V14.0.2.0.TLUINXM_20230707.0000.00_13.0_in_43f9f66168.tgz
- out=download.tgz
+https://objects.githubusercontent.com/github-production-release-asset-2e65be/532916467/33087696-b7be-430d-92cf-0a52ea6604e4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20240524%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240524T111955Z&X-Amz-Expires=300&X-Amz-Signature=96e6c5b545e754b42edfc17d9aa7968503b5f4874e7661cbc851e3c3ebf5c63d&X-Amz-SignedHeaders=host&actor_id=140780838&key_id=0&repo_id=532916467&response-content-disposition=attachment%3B%20filename%3Dfw_rock_miui_ROCKINGlobal_V14.0.2.0.TLUINXM_2a03c56898_13.0.zip&response-content-type=application%2Foctet-stream
+ out=download.zip
