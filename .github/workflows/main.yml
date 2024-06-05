@@ -16,7 +16,7 @@ jobs:
           sudo apt-get install -y aria2 tar unzip
       - uses: actions/checkout@main
       - name: Download archive file
-        run: aria2c -x 16 -s 16 --file-allocation=none -o download.txt
+        run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
       - name: Decompress archive file
         run: |
           if [ -f download.tgz ]; then
