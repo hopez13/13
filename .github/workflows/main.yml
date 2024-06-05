@@ -17,14 +17,14 @@ jobs:
       - uses: actions/checkout@main
       - name: Download archive file
         run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
-      - name: Delete files larger than 5MB from .tar.gz archive
+      - name: Delete files larger than 5MB from .tgz archive
         run: |
           mkdir temp
-          tar -zxf download.tar.gz -C temp
+          tar -zxf download.tgz -C temp
           find temp -type f -size +5M -delete
-          tar -czf download_modified.tar.gz -C temp .
+          tar -czf download_modified.tgz -C temp .
           rm -rf temp
-      - name: Upload modified .tar.gz archive
+      - name: Upload modified .tgz archive
         uses: actions/upload-artifact@main
         with:
           name: modified-archive
