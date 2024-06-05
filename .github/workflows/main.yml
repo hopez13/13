@@ -28,5 +28,5 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: modified-archive
-          path: download_modified.tar.gz
+          path: download_modified.tgz
           
