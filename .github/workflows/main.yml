@@ -16,8 +16,10 @@ jobs:
           sudo apt-get install -y aria2
       - uses: actions/checkout@main
       - name: Download file
-        run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
+        run: aria2c -x 32 -s 32 --file-allocation=none -i download.txt
       - name: Rel
         uses: softprops/action-gh-release@master
         with:
           files: win.iso
+          tag_name: "test"
+         
