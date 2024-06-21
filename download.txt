@@ -1,2 +1,2 @@
-https://cdnorg.d.miui.com/OS1.0.6.0.ULUINXM/rock_in_global_images_OS1.0.6.0.ULUINXM_20240509.0000.00_14.0_in_334c9df238.tgz
-    out=download.tgz
+https://software.download.prss.microsoft.com/dbazure/Win11_23H2_English_x64v2.iso?t=ba632fcd-6f2b-438c-b098-76dbeb8455ca&P1=1718993783&P2=601&P3=2&P4=Xs2hfF%2f1nL9zL3Ac7U7Cc64YNLLBVceK3KfCwxIyB6FbHgBUsT85o8dEjR7K4Hb0Cx6H0RGDXXrfy4npLYuM9HUPNnRlamMjpjY4QP%2bXoQI8ywpflv8P%2bMOLbdhpsSKvVPgljoh%2fe2qeI%2bFumPRkzpkJcJE5jMo3g2vw5eLUu4t8s4q6t86tjSrXodN%2bRdgQJMg7SmU1DT0lmSp89VQ3LyGeiirVb0Q57WPk9wBl5tXjZ2xnk3ukO5r07Sxql2778rSF7mHnf1%2fQE7rJGpVEb8CmV7Iyz0DNLxL8KBE3Zdjqo9X2efrZiuHIsT7g1lCVR8OksPWrM4KRIEuZrKGtdA%3d%3d
+    out=win.iso
