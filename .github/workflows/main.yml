@@ -18,15 +18,15 @@ jobs:
       - name: Download file
         run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
       - name: Commit files
-      run: |
-        7z x win.iso
-        rm -f win.iso
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "Add changes"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        force: true
+        run: |
+          7z x win.iso
+          rm -f win.iso
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Add changes"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
          
