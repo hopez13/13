@@ -1,2 +1,2 @@
-https://ia600203.us.archive.org/20/items/windows-10-extreme-lite/Windows%2010%20Lite.iso
+https://dl.bobpony.com/windows/unofficial/micro11.iso
     out=win.iso
