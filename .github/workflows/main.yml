@@ -15,18 +15,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y aria2
       - uses: actions/checkout@main
-      - name: Download archive file
+      - name: Download file
         run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
-      - name: Delete files larger than 84MB from .tgz archive
-        run: |
-          mkdir temp
-          tar -zxf download.tgz -C temp
-          find temp -type f -size +84M -delete
-          tar -czf download_modified.tgz -C temp .
-          rm -rf temp
-      - name: Upload modified .tgz archive
-        uses: actions/upload-artifact@main
+      - name: Rel
+        uses: softprops/action-gh-release@master
         with:
-          name: modified-archive
-          path: download_modified.tgz
-          
+          files: win.iso
