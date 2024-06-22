@@ -1,2 +1,2 @@
-https://dl.bobpony.com/windows/unofficial/micro11.iso
-    out=win.iso
+https://dl.google.com/android/repository/android-ndk-r27-beta2-linux.zip
+    out=ndk.zip
