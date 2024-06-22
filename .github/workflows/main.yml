@@ -1,9 +1,5 @@
 name: run
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -13,28 +9,14 @@ jobs:
       - name: Update tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y aria2 p7zip-full unzip
+          sudo apt-get install -y aria2  
       - uses: actions/checkout@main
       - name: Download file
         run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
       - name: Unzip files
-        run: unzip ndk.zip
-      - name: Remove large files
-        run: |
-          find . -type f -size +100M -exec rm -f {} +
-      - name: Log removed files
-        run: |
-          find . -type f -size +100M -exec sh -c 'echo "{} $(stat -c %s {})" >> removed_files.txt' \;
-      - name: Configure Git
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-      - name: Commit changes
-        run: |
-          git add -A
-          git commit -a -m "Add changes"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+        run: tar -xzf rom.tgz --wildcards '*/vendor_boot.img'
+      - name: Upload file using actions/upload-artifact
+        uses: actions/upload-artifact@main
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+          name: vendor_boot_img
+          path: ./vendor_boot.img
