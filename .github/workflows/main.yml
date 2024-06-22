@@ -15,8 +15,16 @@ jobs:
         run: aria2c -x 16 -s 16 --file-allocation=none -i download.txt
       - name: Unzip files
         run: tar -xzf rom.tgz --wildcards '*/vendor_boot.img'
+      - name: Find vendor_boot.img
+        run: |
+          find . -name 'vendor_boot.img' -exec mv {} ./ \;
+        working-directory: ${{ github.workspace }}
+
+      - name: Compress vendor_boot.img with highest compression
+        run: gzip -9 vendor_boot.img
+
       - name: Upload file using actions/upload-artifact
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v2
         with:
           name: vendor_boot_img
-          path: ./vendor_boot.img
+          path: ./vendor_boot.img.gz
